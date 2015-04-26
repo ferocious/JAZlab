@@ -8,12 +8,13 @@
         <title>Demo application</title>
     </head>
     <body>
-        <h2>JAZ, ZAD2, Dorota Gmerek</h2>
+        <h2>JAZ, ZAD2, ZAD3, Dorota Gmerek</h2>
         
         <p><a href="register.jsp">Register</a></p>
         <p><a href="login.jsp">Login</a></p>
         <p><a href="user_profile">User profile</a></p>
         <p><a href="premium.jsp">Premium</a></p>
         <p><a href="premium_list">Premium list</a></p>
+        <p><a href="adresy">Adresy</a></p>
     </body>
 </html>

@@ -1,5 +1,8 @@
 package com.example.zad2.domain;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class UserData {
 
 	private String username;
@@ -9,6 +12,16 @@ public class UserData {
 	private String email;
 	
 	private boolean premium;
+	
+	private List<AdresData> adresy = new ArrayList<AdresData>();
+
+	public List<AdresData> getAdresy() {
+		return adresy;
+	}
+
+	public void setAdresy(List<AdresData> adresy) {
+		this.adresy = adresy;
+	}
 
 	public String getUsername() {
 		return username;
