@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	template="/templates/default.xhtml">
+
+	<ui:define name="content">
+		<div>#{msg.applicationInfo}</div>
+
+		<div>
+			<h:dataTable value="#{personBean.personList}" var="item">
+				<h:column>
+					<f:facet name="header">#{msg.personFirstName}</f:facet>
+					#{item.firstName}
+				</h:column>
+				
+				<h:column>
+					<f:facet name="header">#{msg.personLastName}</f:facet>
+					#{item.lastName}
+				</h:column>
+				
+				<h:column>
+					<f:facet name="header">#{msg.personPesel}</f:facet>
+					#{item.pesel}
+				</h:column>
+				
+				<h:column>
+					<f:facet name="header">#{msg.personBirthDate}</f:facet>
+					#{item.birthDate}
+				</h:column>
+			
+				<h:column>
+					<f:facet name="header">#{msg.personAddress}</f:facet>
+					#{item.address}
+				</h:column>
+				
+				<h:column>
+					<f:facet name="header">#{msg.personPhoneNumber}</f:facet>
+					#{item.phoneNumber}
+				</h:column>
+			
+				<h:column>
+					<f:facet name="header">#{msg.personWeight}</f:facet>
+					#{item.weight}
+				</h:column>
+				
+				<h:column>
+					<f:facet name="header">#{msg.personHeight}</f:facet>
+					#{item.height}
+				</h:column>
+			</h:dataTable>
+			
+		</div>
+
+	</ui:define>
+
+</ui:composition>

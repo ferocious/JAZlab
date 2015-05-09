@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html">
+
+	<div>
+		<table class="menuTable">
+			<tr>
+				<td>
+					<h:outputLink value="./index.xhtml">#{msg.linkHome}</h:outputLink>
+				</td>
+				
+				<td>
+					<h:outputLink value="./person_search.xhtml">#{msg.linkPersonSearch}</h:outputLink>
+				</td>
+				
+				<td>
+					<h:outputLink value="./add_person.xhtml">#{msg.linkAddPerson}</h:outputLink>
+				</td>
+				
+				<td>
+					<h:outputLink value="./index.xhtml">#{msg.linkTools}</h:outputLink>
+				</td>
+			</tr>
+		</table>
+	</div>
+</ui:composition>

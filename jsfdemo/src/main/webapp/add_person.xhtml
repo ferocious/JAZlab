@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	template="/templates/default.xhtml">
+
+	<ui:define name="content">
+		<div>#{msg.applicationInfo}</div>
+		
+		<div>
+			<h:messages />
+		</div>
+		
+		<div>
+			<h:form>
+				<table>
+					<tr>
+						<td>
+							<h:outputLabel value="#{msg.personFirstName}" />
+						</td>
+						
+						<td>
+							<h:inputText value="#{personBean.person.firstName}" />
+						</td>
+					</tr>
+					
+					<tr>
+						<td>
+							<h:outputLabel value="#{msg.personLastName}" />
+						</td>
+						
+						<td>
+							<h:inputText value="#{personBean.person.lastName}" />
+						</td>
+					</tr>
+					
+					<tr>
+						<td>
+							<h:outputLabel value="#{msg.personPesel}" />
+						</td>
+						
+						<td>
+							<h:inputText value="#{personBean.person.pesel}" />
+						</td>
+					</tr>
+					
+					<tr>
+						<td>
+							<h:outputLabel value="#{msg.personBirthDate}" />
+						</td>
+						
+						<td>
+							<h:inputText value="#{personBean.person.birthDate}">
+								<f:convertDateTime pattern="dd-MM-yyyy"/>
+							</h:inputText>
+						</td>
+					</tr>
+					
+					<tr>
+						<td>
+							<h:outputLabel value="#{msg.personAddress}" />
+						</td>
+						
+						<td>
+							<h:inputText value="#{personBean.person.address}" />
+						</td>
+					</tr>
+					
+					<tr>
+						<td>
+							<h:outputLabel value="#{msg.personPhoneNumber}" />
+						</td>
+						
+						<td>
+							<h:inputText value="#{personBean.person.phoneNumber}" />
+						</td>
+					</tr>
+					
+					<tr>
+						<td>
+							<h:outputLabel value="#{msg.personWeight}" />
+						</td>
+						
+						<td>
+							<h:inputText value="#{personBean.person.weight}" />
+						</td>
+					</tr>
+					
+					<tr>
+						<td>
+							<h:outputLabel value="#{msg.personHeight}" />
+						</td>
+						
+						<td>
+							<h:inputText value="#{personBean.person.height}" />
+						</td>
+					</tr>
+					
+					<tr>
+						<td>
+						</td>
+						
+						<td>
+							<h:commandButton action="#{personBean.add()}" value="#{msg.add}" />
+						</td>
+					</tr>
+				</table>
+			</h:form>
+		</div>
+
+	</ui:define>
+
+</ui:composition>
