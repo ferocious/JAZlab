@@ -10,11 +10,11 @@
 		<div>#{msg.applicationInfo}</div>
 		
 		<div>
-			<h:messages />
+			<h:messages globalOnly="true" />
 		</div>
 		
 		<div>
-			<h:form>
+			<h:form id="personForm">
 				<table>
 					<tr>
 						<td>
@@ -22,7 +22,15 @@
 						</td>
 						
 						<td>
-							<h:inputText value="#{personBean.person.firstName}" />
+							<h:inputText id="firstName" required="true" value="#{personBean.person.firstName}" 
+								requiredMessage="#{msg.emptyField}" validatorMessage="#{msg.nameLengthValidation}">
+								
+								<f:validateLength minimum="2" maximum="50" />
+							</h:inputText>
+						</td>
+						
+						<td>
+							<h:message for="firstName"/>
 						</td>
 					</tr>
 					
@@ -32,7 +40,14 @@
 						</td>
 						
 						<td>
-							<h:inputText value="#{personBean.person.lastName}" />
+							<h:inputText id="lastName" required="true" value="#{personBean.person.lastName}" 
+								requiredMessage="#{msg.emptyField}" validatorMessage="#{msg.nameLengthValidation}" >
+							
+								<f:validateLength minimum="2" maximum="50" />
+							</h:inputText>
+						</td>
+						<td>
+							<h:message for="lastName"/>
 						</td>
 					</tr>
 					
@@ -42,8 +57,17 @@
 						</td>
 						
 						<td>
-							<h:inputText value="#{personBean.person.pesel}" />
+							<h:inputText id="pesel" required="true" value="#{personBean.person.pesel}"
+								requiredMessage="#{msg.emptyField}">
+								
+								<f:convertNumber />
+								<f:validateLength minimum="2" maximum="50" />
+							</h:inputText>
 						</td>
+						<td>
+							<h:message for="pesel"/>
+						</td>						
+						
 					</tr>
 					
 					<tr>
@@ -52,10 +76,15 @@
 						</td>
 						
 						<td>
-							<h:inputText value="#{personBean.person.birthDate}">
+							<h:inputText id="birthDate" required="true" value="#{personBean.person.birthDate}"
+							requiredMessage="#{msg.emptyField}">
 								<f:convertDateTime pattern="dd-MM-yyyy"/>
 							</h:inputText>
 						</td>
+						<td>
+							<h:message for="birthDate"/>
+						</td>							
+						
 					</tr>
 					
 					<tr>
@@ -64,8 +93,13 @@
 						</td>
 						
 						<td>
-							<h:inputText value="#{personBean.person.address}" />
+							<h:inputText id="address" required="true" value="#{personBean.person.address}" 
+							requiredMessage="#{msg.emptyField}"/>
 						</td>
+						<td>
+							<h:message for="address"/>
+						</td>							
+						
 					</tr>
 					
 					<tr>
@@ -74,8 +108,16 @@
 						</td>
 						
 						<td>
-							<h:inputText value="#{personBean.person.phoneNumber}" />
+							<h:inputText id="phoneNumber" validatorMessage="#{msg.phoneNumberValidator}" 
+								value="#{personBean.person.phoneNumber}" >
+							
+								<f:validateLength minimum="9" maximum="9" />
+							</h:inputText>
 						</td>
+						<td>
+							<h:message for="phoneNumber"/>
+						</td>							
+						
 					</tr>
 					
 					<tr>

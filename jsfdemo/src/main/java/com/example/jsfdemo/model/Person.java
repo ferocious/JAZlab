@@ -22,6 +22,8 @@ public class Person implements Serializable {
 	private Float weight;
 	
 	private Float height;
+	
+	private Date createDate;
 
 	public String getFirstName() {
 		return firstName;
@@ -86,5 +88,14 @@ public class Person implements Serializable {
 	public void setHeight(Float height) {
 		this.height = height;
 	}
+
+	public Date getCreateDate() {
+		return createDate;
+	}
+
+	public void setCreateDate(Date createDate) {
+		this.createDate = createDate;
+	}
+	
 	
 }

@@ -4,54 +4,251 @@
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:a4j="http://richfaces.org/a4j"
 	template="/templates/default.xhtml">
 
 	<ui:define name="content">
 		<div>#{msg.applicationInfo}</div>
-
 		<div>
-			<h:dataTable value="#{personBean.personList}" var="item">
-				<h:column>
-					<f:facet name="header">#{msg.personFirstName}</f:facet>
-					#{item.firstName}
-				</h:column>
-				
-				<h:column>
-					<f:facet name="header">#{msg.personLastName}</f:facet>
-					#{item.lastName}
-				</h:column>
-				
-				<h:column>
-					<f:facet name="header">#{msg.personPesel}</f:facet>
-					#{item.pesel}
-				</h:column>
-				
-				<h:column>
-					<f:facet name="header">#{msg.personBirthDate}</f:facet>
-					#{item.birthDate}
-				</h:column>
 			
-				<h:column>
-					<f:facet name="header">#{msg.personAddress}</f:facet>
-					#{item.address}
-				</h:column>
-				
-				<h:column>
-					<f:facet name="header">#{msg.personPhoneNumber}</f:facet>
-					#{item.phoneNumber}
-				</h:column>
-			
-				<h:column>
-					<f:facet name="header">#{msg.personWeight}</f:facet>
-					#{item.weight}
-				</h:column>
-				
-				<h:column>
-					<f:facet name="header">#{msg.personHeight}</f:facet>
-					#{item.height}
-				</h:column>
-			</h:dataTable>
-			
+			<h:form id="personForm">
+				<table>
+					<tr>
+						<td>
+							<h:outputLabel value="#{msg.personFirstName}" />
+						</td>
+						
+						<td>
+							<h:inputText id="firstName" value="#{personBean.personFilter.firstName}" >
+							</h:inputText>
+						</td>
+						
+					</tr>
+					
+					<tr>
+						<td>
+							<h:outputLabel value="#{msg.personLastName}" />
+						</td>
+						
+						<td>
+							<h:inputText id="lastName"  value="#{personBean.personFilter.lastName}" />
+						</td>
+						<td>
+							<h:message for="lastName"/>
+						</td>
+					</tr>
+					
+					<tr>
+						<td>
+							<h:outputLabel value="#{msg.personPesel}" />
+						</td>
+						
+						<td>
+							<h:inputText id="pesel" value="#{personBean.personFilter.pesel}">
+								
+								<f:convertNumber />
+							</h:inputText>
+						</td>
+						<td>
+							<h:message for="pesel"/>
+						</td>						
+						
+					</tr>
+					
+					<tr>
+						<td>
+							<h:outputLabel value="#{msg.personBirthdateFrom}" />
+						</td>
+						
+						<td>
+							<h:inputText id="birthDateFrom" value="#{personBean.personFilter.birthdateFrom}">
+								<f:convertDateTime pattern="dd-MM-yyyy"/>
+							</h:inputText>
+						</td>
+						<td>
+							<h:message for="birthDateFrom"/>
+						</td>							
+						
+					</tr>
+					
+					<tr>
+						<td>
+							<h:outputLabel value="#{msg.personBirthdateTo}" />
+						</td>
+						
+						<td>
+							<h:inputText id="birthDateTo" value="#{personBean.personFilter.birthdateTo}">
+								<f:convertDateTime pattern="dd-MM-yyyy"/>
+							</h:inputText>
+						</td>
+						<td>
+							<h:message for="birthDateTo"/>
+						</td>							
+						
+					</tr>
+					
+					<tr>
+						<td>
+							<h:outputLabel value="#{msg.personWeightFrom}" />
+						</td>
+						
+						<td>
+							<h:inputText id="weightFrom" value="#{personBean.personFilter.weightFrom}"/>
+						</td>
+						<td>
+							<h:message for="weightFrom"/>
+						</td>							
+						
+					</tr>
+					
+					<tr>
+						<td>
+							<h:outputLabel value="#{msg.personWeightTo}" />
+						</td>
+						
+						<td>
+							<h:inputText id="weightTo" value="#{personBean.personFilter.weightTo}"/>
+						</td>
+						<td>
+							<h:message for="weightTo"/>
+						</td>							
+						
+					</tr>
+					
+					<tr>
+						<td>
+							<h:outputLabel value="#{msg.personHeightFrom}" />
+						</td>
+						
+						<td>
+							<h:inputText id="heightFrom" value="#{personBean.personFilter.heightFrom}"/>
+						</td>
+						<td>
+							<h:message for="heightFrom"/>
+						</td>							
+						
+					</tr>
+					
+					<tr>
+						<td>
+							<h:outputLabel value="#{msg.personHeightTo}" />
+						</td>
+						
+						<td>
+							<h:inputText id="heightTo" value="#{personBean.personFilter.heightTo}"/>
+						</td>
+						<td>
+							<h:message for="heightTo"/>
+						</td>							
+						
+					</tr>
+					
+					<tr>
+						<td>
+							<h:outputLabel value="#{msg.personCreatedFrom}" />
+						</td>
+						
+						<td>
+							<h:inputText id="createdFrom" value="#{personBean.personFilter.createdFrom}">
+								<f:convertDateTime pattern="dd-MM-yyyy"/>
+							</h:inputText>
+						</td>
+						<td>
+							<h:message for="createdFrom"/>
+						</td>							
+						
+					</tr>
+					
+					<tr>
+						<td>
+							<h:outputLabel value="#{msg.personCreatedTo}" />
+						</td>
+						
+						<td>
+							<h:inputText id="createdTo" value="#{personBean.personFilter.createdTo}">
+								<f:convertDateTime pattern="dd-MM-yyyy"/>
+							</h:inputText>
+						</td>
+						<td>
+							<h:message for="createdTo"/>
+						</td>							
+						
+					</tr>
+					
+					<tr>
+					
+						
+						<td>
+							<h:commandButton action="#{personBean.filter()}" value="#{msg.filter}" />
+						</td>
+					</tr>
+				</table>
+			</h:form>
+		</div>
+		
+		<div>
+			<h:form>
+				<h:dataTable value="#{personBean.filteredList}" var="item">
+					<h:column>
+						<f:facet name="header">
+							<h:commandLink action="#{personBean.sortByCreateDate()}">
+					    	   #{msg.personCreateDate}
+					    	</h:commandLink>
+						</f:facet>
+						
+						<h:outputText value="#{item.createDate}">
+							<f:convertDateTime pattern="dd-MM-yyyy" />
+						</h:outputText>
+					</h:column>
+					
+					<h:column>
+						<f:facet name="header">
+							<h:commandLink action="#{personBean.sortByFirstName()}">
+					    	   #{msg.personFirstName}
+					    	</h:commandLink>
+						</f:facet>
+						
+						#{item.firstName}
+					</h:column>
+					
+					<h:column>
+						<f:facet name="header">
+							<h:commandLink action="#{personBean.sortByLastName()}">
+					    	   #{msg.personLastName}
+					    	</h:commandLink>
+						</f:facet>
+						#{item.lastName}
+					</h:column>
+					
+					<h:column>
+						<f:facet name="header">
+							<h:commandLink action="#{personBean.sortByPesel()}">
+					    	   #{msg.personPesel}
+					    	</h:commandLink>
+						</f:facet>
+						#{item.pesel}
+					</h:column>
+					
+					<h:column>
+						<f:facet name="header">
+							<h:commandLink action="#{personBean.sortByWeight()}">
+					    	   #{msg.personWeight}
+					    	</h:commandLink>
+						</f:facet>
+						#{item.weight}
+					</h:column>
+					
+					<h:column>
+						<f:facet name="header">
+							<h:commandLink action="#{personBean.sortByHeight()}">
+					    	   #{msg.personHeight}
+					    	</h:commandLink>
+						</f:facet>
+						#{item.height}
+					</h:column>
+				</h:dataTable>
+			</h:form>
 		</div>
 
 	</ui:define>
