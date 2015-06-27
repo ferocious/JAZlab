@@ -3,16 +3,34 @@ package com.example.jsfdemo.model;
 import java.io.Serializable;
 import java.util.Date;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+
+@Entity
+@NamedQueries({ 
+	@NamedQuery(name = "person.all", query = "Select p from Person p")
+})
 public class Person implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	private Integer id;
+	
 	private String firstName;
 	
 	private String lastName;
 	
 	private String pesel;
 	
+	@Temporal(TemporalType.DATE)
 	private Date birthDate;
 	
 	private String address;
@@ -23,7 +41,16 @@ public class Person implements Serializable {
 	
 	private Float height;
 	
+	@Temporal(TemporalType.DATE)
 	private Date createDate;
+	
+	public Integer getId() {
+		return id;
+	}
+
+	public void setId(Integer id) {
+		this.id = id;
+	}
 
 	public String getFirstName() {
 		return firstName;

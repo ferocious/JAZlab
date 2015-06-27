@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	template="/templates/default.xhtml">
+
+	<ui:define name="content">
+		<div>#{msg.applicationInfo}</div>
+		
+		<div>
+			<h:messages globalOnly="true" />
+		</div>
+		
+		<div>
+			<h:form id="personForm">
+				<table>
+					<tr>
+						<td>
+							<h:outputLabel value="#{msg.person}" />
+						</td>
+						
+						<td>
+							<h:selectOneMenu value="#{personBean.personId}">
+								<f:selectItems value="#{personBean.personList}" var="person" 
+									itemValue="#{person.id}" itemLabel="#{person.firstName} #{person.lastName}"/>
+							</h:selectOneMenu>
+						</td>
+						
+						<td>
+							<h:commandButton action="#{personBean.delete()}" value="#{msg.delete}" />
+						</td>
+					</tr>
+				</table>
+			</h:form>
+		</div>
+
+	</ui:define>
+
+</ui:composition>
