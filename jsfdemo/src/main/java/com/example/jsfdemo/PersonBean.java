@@ -1,7 +1,6 @@
 package com.example.jsfdemo;
 
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.Date;
@@ -11,10 +10,12 @@ import java.util.ResourceBundle;
 import javax.enterprise.context.SessionScoped;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
+import javax.inject.Inject;
 import javax.inject.Named;
 
 import com.example.jsfdemo.model.Person;
 import com.example.jsfdemo.model.PersonFilter;
+import com.example.jsfdemo.services.PersonManager;
 
 @Named
 @SessionScoped
@@ -24,25 +25,48 @@ public class PersonBean implements Serializable {
 
 	private Person person = new Person();
 	
+	private Integer personId;
+	
 	private PersonFilter personFilter = new PersonFilter();
 	
-	private List<Person> personList = new ArrayList<>();
-
+	private List<Person> personList;
+	
 	private List<Person> filteredList;
+	
+	@Inject
+	private PersonManager personManager;
 	
 	public void add() {
 		if (validate()) {
 			person.setCreateDate(new Date());
 			
-			personList.add(person);
+			personManager.addPerson(person);
 			person = new Person();
+			
+			personList = getAllPersons();
+			filteredList = getAllPersons();
 		}
+	}
+	
+	public void delete() {
+		for (Person p : getPersonList()) {
+			if (p.getId().equals(personId)) {
+				personManager.deletePerson(p);
+			}
+		}
+
+		personList = getAllPersons();
+		filteredList = getAllPersons();
+	}
+	
+	public List<Person> getAllPersons() {
+		return personManager.getAllPersons();
 	}
 	
 	public void filter() {
 		filteredList.clear();
 		
-		for (Person p : personList) {
+		for (Person p : getAllPersons()) {
 			if (personFilter.getFirstName() != null && !personFilter.getFirstName().isEmpty()) {
 				if (!p.getFirstName().equals(personFilter.getFirstName())) {
 					continue;
@@ -230,7 +254,7 @@ public class PersonBean implements Serializable {
 	}
 
 	private boolean validatePeselUnique() {
-		for (Person p : personList) {
+		for (Person p : getAllPersons()) {
 			if (p.getPesel().equals(person.getPesel())) {
 				return false;
 			}
@@ -247,20 +271,24 @@ public class PersonBean implements Serializable {
 		this.person = person;
 	}
 
+	public List<Person> getFilteredList() {
+		if (filteredList == null) {
+			filteredList = getAllPersons();
+		}
+		
+		return filteredList;
+	}
+	
 	public List<Person> getPersonList() {
+		if (personList == null) {
+			personList = getAllPersons();
+		}
+		
 		return personList;
 	}
 
 	public void setPersonList(List<Person> personList) {
 		this.personList = personList;
-	}
-
-	public List<Person> getFilteredList() {
-		if (filteredList == null) {
-			filteredList = new ArrayList<>(personList);
-		}
-		
-		return filteredList;
 	}
 
 	public void setFilteredList(List<Person> filteredList) {
@@ -273,6 +301,14 @@ public class PersonBean implements Serializable {
 
 	public void setPersonFilter(PersonFilter personFilter) {
 		this.personFilter = personFilter;
+	}
+
+	public Integer getPersonId() {
+		return personId;
+	}
+
+	public void setPersonId(Integer personId) {
+		this.personId = personId;
 	}
 	
 	
